@@ -12,10 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./task-edit-page.component.css']
 })
 export class TaskEditPageComponent implements OnInit {	
-	
-	constructor( 
-		public todoService: TodoService,
-		public todoForm: FormGroup,
+	public todoForm: FormGroup;
+	constructor( 		
+		public todoService: TodoService,		
 		public formBuilder: FormBuilder,
 		public router: Router
 	) { }
