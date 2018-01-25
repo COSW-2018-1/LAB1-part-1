@@ -15,7 +15,7 @@ export class TodoService {
 		return this.todos;
 	}
 
-	create(description: string, priority: Number = 1, completed: boolean = false) {
-		new Todo(description, priority, completed);
-	}
+	create(description: string, priority: Number, completed: boolean) {
+		this.todos.push(new Todo(description, priority, completed));
+	} 
 }
