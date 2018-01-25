@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -11,6 +12,8 @@ import { TaskEditPageComponent } from './pages/task-edit-page/task-edit-page.com
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { TodoService } from './services/todo.service';
 
 const ROUTES = [
   { path: '', component: HomePageComponent },
@@ -31,9 +34,12 @@ const ROUTES = [
     BrowserModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES),
-    ReactiveFormsModule
+    //ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TodoService, FormGroup, FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+//FormGroup, FormBuilder
