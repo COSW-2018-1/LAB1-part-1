@@ -19,8 +19,9 @@ Introduction to Angular JS and Spring Boot.
     ```
     npm start
     ```
+ 4.1) carpetas a manipular en: spring-boot-angularjs-intro/angular-seed/src/app
 
-5) Create a folder called models. And then create a model class for the TODO object.
+5) Create a folder called app/models. And then create a model class for the TODO object.
     
     5.1) Navigate to the models folder and generate the TODO class with the following command:
     
@@ -46,7 +47,7 @@ Introduction to Angular JS and Spring Boot.
 6) Read about services in the Angular JS documentation site: https://angular.io/guide/architecture#services. 
 Once you understand the concept of services then create a service that will handle the TODO objects: 
 
-    6.1) Create a folder called services.
+    6.1) Create a folder called app/services.
     
     6.2) Navigate from the console to the services folder and generate the TODO service with the following command.
     
@@ -69,6 +70,11 @@ Once you understand the concept of services then create a service that will hand
         ];
     
     ```
+ 7.1) Import Todo class:
+ 
+	```
+	import { Todo } from '../models/todo';
+	```
 
 8) Create a method that expose the mocked list of TODO objects:
      
@@ -104,16 +110,16 @@ Once you understand the concept of services then create a service that will hand
        imports: [
          BrowserModule,
          NgbModule.forRoot(),
-         RouterModule.forRoot(ROUTES)
+         RouterModule.forRoot(ROUTES),
+         ReactiveFormsModule
        ],
        providers: [TodoService],
        bootstrap: [AppComponent]
      })
-     export class AppModule { }
-    
+         
       ```
 
-10) Import and inject the *todo.service* in the *task-list-page.components.ts*:
+10) Import and inject the *todo.service* and *todo* in the *task-list-page.components.ts*:
 
     10.1) Import the *TodoService* and the model:
 
@@ -135,6 +141,17 @@ Once you understand the concept of services then create a service that will hand
     export class TaskListPageComponent implements OnInit {
       private todos: Todo[] = [];
       ``` 
+            
+    Así:
+    
+    ```
+    export class TaskListPageComponent implements OnInit {
+
+	     private todos: Todo[] = [];
+
+  	   constructor(public todoService: TodoService) {
+      }
+    ```
             
 12) Implement the *ngOnInit* method to initialize the Todo Objects list:
        
@@ -164,7 +181,12 @@ Once you understand the concept of services then create a service that will hand
       ``` 
 14) Start the Angular server and verify that the lists of TODOs is shown correctly.
 
-15) Inject the Todo service in the *TaskEditPageComponent*.
+15) Inject the Todo service and Todo in the *TaskEditPageComponent*.
+
+	```
+	import { TodoService } from '../../services/todo.service';
+	import { Todo } from '../../models/todo';
+	```
  
 16) Create a form on the view *task-edit-page-component.html* to create a TODO object:
      ``` 
@@ -214,7 +236,12 @@ Once you understand the concept of services then create a service that will hand
     
     ```  
     import { Router } from '@angular/router';
-    ...
+    
+    ```
+
+    ```
+    
+    public todoForm: FormGroup;
     constructor(
         public todoService: TodoService,
         public formBuilder: FormBuilder,
@@ -237,8 +264,18 @@ Once you understand the concept of services then create a service that will hand
         this.router.navigate(['/tasks']);
       }
     ``` 
+19.1) Crear metodo **crear** de *todo.Service* para efectivamente guardar y mostrar en *Task*:
+
+	```
+	create(description: string, priority: Number, completed: boolean) {
+			this.todos.push(new Todo(description, priority, completed));
+		} 
+		
+	```
 
 20) Run the Angular server and verify that the add todo works.
+
+- **Se puede reducir el tamaño borrando la carpeta:** *node_modules*
 
 
 #### Part 2: Compile the angular project and include it on the Spring Boot server
@@ -248,11 +285,10 @@ Once you understand the concept of services then create a service that will hand
     ```
     npm run build
     ```
- 
 2) Copy all the files contain in the *anuglar-seed/dist* folder of the *resources/static* folder in the SpringBoot project.
 
-3) Run the Spring Boot server from the console with *./gradlew bootRun* and verify that project works.
+3) Run the Spring Boot server from the console and verify that project works.
 
-
-
-
+ ```
+ ./gradlew bootRun
+ ```
