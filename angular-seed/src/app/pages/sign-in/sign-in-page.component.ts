@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
 	selector: 'app-sing-in-page',
-	templateUrl: './hsign-in-page.component.html'
+	templateUrl: './sign-in-page.component.html'
 })
 export class SignInPageComponent implements OnInit {
 
