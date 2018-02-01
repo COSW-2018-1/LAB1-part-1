@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo';
 
 import { APIService } from '../common/api.service';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TodoService extends APIService {
@@ -12,8 +13,9 @@ export class TodoService extends APIService {
 		new Todo('todo 3')
 	];
 
-	create(description: string, priority: Number, completed: boolean) {
-		this.todos.push(new Todo(description, priority, completed));
+	create(description: string, priority: Number, completed: boolean): Observable<Todo>  {
+		//this.todos.push(new Todo(description, priority, completed));
+		return this.post(this.resourceUrl, new Todo(description, priority, completed));
 	} 
 
 	list(): Observable<Todo[]> {
