@@ -5,7 +5,8 @@
       </button>
   <a class="navbar-brand" href="#">COSW Angular4</a>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
+    <ul *ngIf="!isLoggedIn()" class="navbar-nav mr-auto">
+
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="/" routerLink="/">Home</a>
       </li>
@@ -14,7 +15,11 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="/edit" routerLink="/edit">Edit</a>
-      </li>
+	  </li>
+	  <li *ngIf="isLoggedIn()" class="nav-item">
+		<a href="#" class="nav-link" (click)="signOut()">(Sign Out)</a>
+	  </li>
+	  
     </ul>
   </div>
 </nav>
