@@ -9,14 +9,20 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SignInPageComponent implements OnInit {
 
-	loginError: string;
-	router: Router;
-	signInForm: FormGroup;
-	usersService: UsersService;
+	public signInForm: FormGroup;	
 
-	constructor() { }
+	constructor(
+		public loginError: string,
+		public formBuilder: FormBuilder,
+		public router: Router,
+		public usersService: UsersService
+	){  }
 
 	ngOnInit() {
+		this.signInForm = this.formBuilder.group({
+			username: '',
+			password: ''			
+		});
 	}
 
 	doLogin() {

@@ -17,6 +17,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './common/auth.service';
 import { SignInPageComponent } from './pages/sign-in/sign-in-page.component';
+import { AppDataService } from './common/app-data.service';
+import { UsersService } from './services/users.service';
+import { Http } from '@angular/http/src/http';
+import { ConnectionBackend } from '@angular/http/src/interfaces';
 
 const ROUTES = [
 	{ path: '', component: SignInPageComponent },
@@ -40,7 +44,8 @@ const ROUTES = [
 		HomePageComponent,
 		TaskListPageComponent,
 		TaskEditPageComponent,
-		PageNotFoundComponent
+		PageNotFoundComponent,
+		SignInPageComponent
 	],
 	imports: [
 		BrowserModule,
@@ -57,7 +62,11 @@ const ROUTES = [
 			}
 		},
 		TodoService,
-		AppConfiguration
+		AppConfiguration,
+		AuthService,
+		AppDataService,
+		UsersService,
+		HttpModule
 	],
 	bootstrap: [AppComponent]
 })
