@@ -10,12 +10,12 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class SignInPageComponent implements OnInit {
 
 	public signInForm: FormGroup;	
+	public loginError: string;
 
 	constructor(
-		public loginError: string,
+		public usersService: UsersService,
 		public formBuilder: FormBuilder,
-		public router: Router,
-		public usersService: UsersService
+		public router: Router		
 	){  }
 
 	ngOnInit() {

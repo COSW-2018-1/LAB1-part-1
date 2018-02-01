@@ -19,7 +19,7 @@ import { AuthService } from './common/auth.service';
 import { SignInPageComponent } from './pages/sign-in/sign-in-page.component';
 import { AppDataService } from './common/app-data.service';
 import { UsersService } from './services/users.service';
-import { Http } from '@angular/http/src/http';
+//import { Http } from '@angular/http/src/http';
 import { ConnectionBackend } from '@angular/http/src/interfaces';
 
 const ROUTES = [
